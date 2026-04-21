@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink | High Speed Internet Powered by SpaceX</title>
+    <meta name="description" content="Starlink delivers high-speed, low-latency internet to users all over the world.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Inter (closest to Starlink's custom font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'starlink-dark': '#000000',
+                        'starlink-gray': '#171717',
+                        'starlink-light': '#f5f5f5',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'fade-in-up': 'fadeInUp 1.2s ease-out',
+                        'slide-in': 'slideIn 0.8s ease-out',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideIn: {
+                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Hero gradient overlay */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%);
+        }
+        
+        /* Starfield animation */
+        .starfield {
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, white, transparent),
+                radial-gradient(2px 2px at 60px 70px, white, transparent),
+                radial-gradient(1px 1px at 50px 160px, white, transparent),
+                radial-gradient(1px 1px at 130px 40px, white, transparent),
+                radial-gradient(2px 2px at 90px 180px, white, transparent),
+                radial-gradient(1px 1px at 180px 90px, white, transparent),
+                radial-gradient(2px 2px at 250px 30px, white, transparent),
+                radial-gradient(1px 1px at 300px 120px, white, transparent),
+                radial-gradient(1px 1px at 340px 60px, white, transparent),
+                radial-gradient(2px 2px at 380px 200px, white, transparent);
+            background-size: 400px 250px;
+            background-repeat: repeat;
+            animation: twinkle 5s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+        }
+        
+        /* Earth globe effect */
+        .earth-glow {
+            box-shadow: 
+                inset -50px -50px 100px rgba(0,0,0,0.8),
+                0 0 100px rgba(59, 130, 246, 0.3),
+                0 0 200px rgba(59, 130, 246, 0.2);
+        }
+        
+        /* Button hover effect */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        /* Dropdown animation */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        /* Card hover effect */
+        .plan-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        
+        /* Video background placeholder */
+        .hero-bg {
+            background: 
+                radial-gradient(ellipse at center, rgba(29, 78, 216, 0.15) 0%, transparent 70%),
+                linear-gradient(180deg, #000 0%, #0a0a1a 50%, #000 100%);
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(1px 1px at 10% 20%, white, transparent),
+                radial-gradient(1px 1px at 30% 40%, white, transparent),
+                radial-gradient(2px 2px at 50% 60%, white, transparent),
+                radial-gradient(1px 1px at 70% 80%, white, transparent),
+                radial-gradient(1px 1px at 90% 10%, white, transparent),
+                radial-gradient(2px 2px at 15% 70%, white, transparent),
+                radial-gradient(1px 1px at 85% 35%, white, transparent),
+                radial-gradient(1px 1px at 45% 85%, white, transparent),
+                radial-gradient(2px 2px at 75% 25%, white, transparent),
+                radial-gradient(1px 1px at 25% 55%, white, transparent);
+            background-size: 100% 100%;
+            opacity: 0.6;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+        
+        /* Orbit animation */
+        .orbit-line {
+            position: absolute;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Satellite dot */
+        .satellite {
+            width: 8px;
+            height: 8px;
+            background: #60a5fa;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #60a5fa, 0 0 40px #60a5fa;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        /* Image placeholder with gradient */
+        .image-placeholder {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0c0a2e 50%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(96, 165, 250, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+        }
+        
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Nav link underline */
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Glass morphism */
+        .glass {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="glass">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex items-center">
+                        <a href="#" class="flex items-center space-x-2">
+                            <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 2L20 14L28 16L20 18L16 30L12 18L4 16L12 14L16 2Z" fill="white"/>
+                            </svg>
+                            <span class="text-xl font-bold tracking-wider">STARLINK</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex items-center space-x-8">
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Residential</a>
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Roam</a>
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Business</a>
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Maritime</a>
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Aviation</a>
+                        <a href="#" class="nav-link text-sm font-medium hover:text-gray-300 transition">Enterprise</a>
+                    </div>
+                    
+                    <!-- Right side -->
+                    <div class="flex items-center space-x-4">
+                        <button class="hidden md:flex items-center text-sm hover:text-gray-300 transition">
+                            <i class="fas fa-globe mr-2"></i>
+                            <span>EN</span>
+                        </button>
+                        <a href="#" class="hidden md:block text-sm font-medium hover:text-gray-300 transition">Sign In</a>
+                        <a href="#" class="hidden md:inline-flex px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 btn-primary">
+                            Order Now
+                        </a>
+                        
+                        <!-- Mobile menu button -->
+                        <button id="mobileMenuBtn" class="lg:hidden text-white">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-black bg-opacity-95 transform translate-x-full mobile-menu lg:hidden">
+        <div class="flex flex-col h-full pt-20 px-6">
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Residential</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Roam</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Business</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Maritime</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Aviation</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Enterprise</a>
+            <a href="#" class="py-4 text-2xl font-semibold border-b border-gray-800">Sign In</a>
+            <a href="#" class="mt-6 px-5 py-3 bg-white text-black text-center text-lg font-semibold rounded-full">Order Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Animated background stars -->
+        <div class="absolute inset-0 starfield opacity-50"></div>
+        
+        <!-- Orbit animations -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] pointer-events-none">
+            <div class="orbit-line w-full h-full"></div>
+            <div class="orbit-line w-3/4 h-3/4 top-[12.5%] left-[12.5%]" style="animation-duration: 15s; animation-direction: reverse;"></div>
+            <div class="orbit-line w-1/2 h-1/2 top-[25%] left-[25%]" style="animation-duration: 10s;"></div>
+        </div>
+        
+        <!-- Hero overlay -->
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 animate-fade-in-up">
+                High-Speed Internet<br>
+                <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Across the Globe
+                </span>
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+                Starlink delivers high-speed, low-latency internet to users all over the world. 
+                Powered by SpaceX's most advanced satellite constellation.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#" class="btn-primary px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 text-lg min-w-[200px]">
+                    Order Now
+                </a>
+                <a href="#" class="btn-primary px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all duration-300 text-lg min-w-[200px]">
+                    Learn More
+                </a>
+            </div>
+            
+            <!-- Stats bar -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">6000+</div>
+                    <div class="text-sm text-gray-400 mt-1">Satellites</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">100+</div>
+                    <div class="text-sm text-gray-400 mt-1">Countries</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">4M+</div>
+                    <div class="text-sm text-gray-400 mt-1">Subscribers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl md:text-4xl font-bold text-white">220+</div>
+                    <div class="text-sm text-gray-400 mt-1">Mbps Speed</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-white opacity-50"></i>
+        </div>
+    </section>
+
+    <!-- Service Plans Section -->
+    <section class="py-20 md:py-32 bg-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">
+                    Service Plans
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Choose the Starlink service that's right for you
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Residential Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal">
+                    <div class="image-placeholder h-64 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-home text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Residential</h3>
+                        <p class="text-gray-400 mb-6">High-speed, low-latency internet for your home. Stream, game, and work from anywhere.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$120</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Roam Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal" style="transition-delay: 0.1s;">
+                    <div class="image-placeholder h-64 relative" style="background: linear-gradient(135deg, #065f46 0%, #0c0a2e 50%, #000 100%);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-caravan text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Roam</h3>
+                        <p class="text-gray-400 mb-6">Internet on the go. Perfect for RVs, camping, and remote adventures anywhere.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$50</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Business Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal" style="transition-delay: 0.2s;">
+                    <div class="image-placeholder h-64 relative" style="background: linear-gradient(135deg, #7c2d12 0%, #0c0a2e 50%, #000 100%);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-building text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Business</h3>
+                        <p class="text-gray-400 mb-6">Enterprise-grade connectivity with priority data and higher throughput speeds.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$250</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Maritime Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal">
+                    <div class="image-placeholder h-64 relative" style="background: linear-gradient(135deg, #0c4a6e 0%, #0c0a2e 50%, #000 100%);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-ship text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Maritime</h3>
+                        <p class="text-gray-400 mb-6">High-performance internet for ocean voyages. Stay connected while at sea.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">$250</span>
+                            <span class="text-gray-400 ml-2">/month</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Aviation Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal" style="transition-delay: 0.1s;">
+                    <div class="image-placeholder h-64 relative" style="background: linear-gradient(135deg, #581c87 0%, #0c0a2e 50%, #000 100%);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-plane text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Aviation</h3>
+                        <p class="text-gray-400 mb-6">In-flight connectivity that rivals ground speeds. Perfect for aircraft.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">Contact</span>
+                            <span class="text-gray-400 ml-2">for pricing</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="plan-card bg-gradient-to-b from-gray-900 to-black border border-gray-800 rounded-2xl overflow-hidden reveal" style="transition-delay: 0.2s;">
+                    <div class="image-placeholder h-64 relative" style="background: linear-gradient(135deg, #831843 0%, #0c0a2e 50%, #000 100%);">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-6xl text-white opacity-80"></i>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold mb-3">Enterprise</h3>
+                        <p class="text-gray-400 mb-6">Custom solutions for large-scale deployments and global operations.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-bold">Custom</span>
+                            <span class="text-gray-400 ml-2">pricing</span>
+                        </div>
+                        <a href="#" class="block w-full py-3 bg-white text-black font-semibold rounded-full text-center hover:bg-gray-200 transition">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6">
+                        Advanced Satellite<br>
+                        <span class="text-blue-400">Technology</span>
+                    </h2>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Starlink is the world's first and largest satellite constellation using a low Earth orbit 
+                        to deliver broadband internet capable of supporting streaming, online gaming, video calls and more.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-bolt text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">High-Speed Internet</h3>
+                                <p class="text-gray-400">Download speeds between 25-220 Mbps for unparalleled browsing experience.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-purple-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-satellite-dish text-purple-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Low Latency</h3>
+                                <p class="text-gray-400">Latency as low as 20ms thanks to our low Earth orbit satellites.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-green-500 bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-globe-americas text-green-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Global Coverage</h3>
+                                <p class="text-gray-400">Available in over 100 countries across all seven continents.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative reveal">
+                    <!-- Earth illustration -->
+                    <div class="relative w-full aspect-square max-w-lg mx-auto">
+                        <div class="absolute inset-0 rounded-full earth-glow" 
+                             style="background: radial-gradient(circle at 30% 30%, #3b82f6 0%, #1e3a8a 40%, #0c1844 70%, #000 100%);">
+                        </div>
+                        <!-- Orbiting satellites -->
+                        <div class="absolute inset-0 animate-spin" style="animation-duration: 20s;">
+                            <div class="absolute top-0 left-1/2 -translate-x-1/2 satellite"></div>
+                        </div>
+                        <div class="absolute inset-0 animate-spin" style="animation-duration: 15s; animation-direction: reverse;">
+                            <div class="absolute bottom-0 left-1/2 -translate-x-1/2 satellite"></div>
+                        </div>
+                        <div class="absolute inset-0 animate-spin" style="animation-duration: 25s;">
+                            <div class="absolute top-1/2 right-0 -translate-y-1/2 satellite"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 md:py-32 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">How Starlink Works</h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                    Simple setup, incredible speeds. Get connected in minutes.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center reveal">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto">
+                            <span class="text-4xl font-bold">1</span>
+                        </div>
+                        <div class="absolute -inset-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full blur-xl opacity-30"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Order Your Kit</h3>
+                    <p class="text-gray-400">Choose your service plan and order your Starlink kit online. Fast shipping worldwide.</p>
+                </div>
+                
+                <div class="text-center reveal" style="transition-delay: 0.2s;">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto">
+                            <span class="text-4xl font-bold">2</span>
+                        </div>
+                        <div class="absolute -inset-2 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full blur-xl opacity-30"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Install in Minutes</h3>
+                    <p class="text-gray-400">Set up your Starlink hardware with clear view of the sky. No tools required for basic install.</p>
+                </div>
+                
+                <div class="text-center reveal" style="transition-delay: 0.4s;">
+                    <div class="relative inline-block mb-6">
+                        <div class="w-24 h-24 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
+                            <span class="text-4xl font-bold">3</span>
+                        </div>
+                        <div class="absolute -inset-2 bg-gradient-to-br from-pink-500 to-red-600 rounded-full blur-xl opacity-30"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Start Streaming</h3>
+                    <p class="text-gray-400">Connect to high-speed internet instantly. Stream, game, and browse without limits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Map Section -->
+    <section class="py-20 md:py-32 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">
+                    Global Coverage Map
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+                    See where Starlink is available and track our expansion
+                </p>
+            </div>
+            
+            <div class="relative rounded-3xl overflow-hidden image-placeholder h-[400px] md:h-[600px] reveal">
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <i class="fas fa-map-marked-alt text-8xl text-white opacity-40 mb-4"></i>
+                    <p class="text-2xl font-bold text-white opacity-80">Interactive Coverage Map</p>
+                    <a href="#" class="mt-6 px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+                        Check Availability
+                    </a>
+                </div>
+                <!-- Dots representing coverage -->
+                <div class="absolute inset-0">
+                    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="absolute top-1/3 left-1/2 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="absolute top-1/2 left-3/4 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="absolute top-3/4 left-1/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="absolute top-2/3 left-2/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                    <div class="absolute top-1/5 left-2/3 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 md:py-32 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 starfield opacity-30"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="reveal">
+                <h2 class="text-4xl md:text-7xl font-bold mb-6">
+                    Ready to Connect?
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Join millions of users worldwide experiencing the power of Starlink's satellite internet.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="btn-primary px-10 py-4 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all text-lg">
+                        Check Availability
+                    </a>
+                    <a href="#" class="btn-primary px-10 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-black transition-all text-lg">
+                        Order Starlink
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 2L20 14L28 16L20 18L16 30L12 18L4 16L12 14L16 2Z" fill="white"/>
+                        </svg>
+                        <span class="text-xl font-bold tracking-wider">STARLINK</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-xs">
+                        High-speed, low-latency internet powered by SpaceX's advanced satellite technology.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Residential</a></li>
+                        <li><a href="#" class="hover:text-white transition">Business</a></li>
+                        <li><a href="#" class="hover:text-white transition">Roam</a></li>
+                        <li><a href="#" class="hover:text-white transition">Maritime</a></li>
+                        <li><a href="#" class="hover:text-white transition">Aviation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition">Setup Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition">Specifications</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">SpaceX</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500">© 2026 Space Exploration Technologies Corp. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-times text-xl"></i>';
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+        });
+        
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            });
+        });
+        
+        // Reveal animations on scroll using Intersection Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optional: stop observing once revealed for performance
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '') return;
+                
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Parallax effect on hero section
+        const heroSection = document.querySelector('.hero-bg');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            if (heroSection && scrolled < window.innerHeight) {
+                const parallaxSpeed = 0.5;
+                heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+                heroSection.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+        
+        // Add hover glow effect to plan cards
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(59, 130, 246, 0.1) 0%, rgba(17, 17, 17, 1) 50%, rgba(0, 0, 0, 1) 100%)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = '';
+            });
+        });
+        
+        // Dynamic stats counter animation
+        const animateCounter = (element, target, duration = 2000) => {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current).toLocaleString() + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString() + '+';
+                }
+            };
+            
+            updateCounter();
+        };
+        
+        // Trigger stats animation when visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.text-3xl.md\\:text-4xl.font-bold');
+                    const values = [6000, 100, 4000000, 220];
+                    const suffixes = ['+', '+', '+', ''];
+                    
+                    statNumbers.forEach((el, index) => {
+                        if (values[index]) {
+                            const displayValue = index === 2 ? '4M+' : values[index].toLocaleString() + suffixes[index];
+                            // For display purposes keep original format
+                            setTimeout(() => {
+                                el.style.transition = 'all 0.5s ease';
+                                el.style.transform = 'scale(1.1)';
+                                setTimeout(() => {
+                                    el.style.transform = 'scale(1)';
+                                }, 300);
+                            }, index * 150);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe the stats section
+        const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // Cursor trail effect (subtle)
+        let cursorDots = [];
+        const maxDots = 8;
+        
+        document.addEventListener('mousemove', (e) => {
+            // Only on desktop
+            if (window.innerWidth < 1024) return;
+            
+            const dot = document.createElement('div');
+            dot.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                width: 4px;
+                height: 4px;
+                background: rgba(96, 165, 250, 0.6);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transition: all 0.8s ease-out;
+                box-shadow: 0 0 10px rgba(96, 165, 250, 0.8);
+            `;
+            document.body.appendChild(dot);
+            cursorDots.push(dot);
+            
+            // Fade out and remove
+            setTimeout(() => {
+                dot.style.opacity = '0';
+                dot.style.transform = 'scale(0)';
+            }, 50);
+            
+            setTimeout(() => {
+                dot.remove();
+                cursorDots = cursorDots.filter(d => d !== dot);
+            }, 800);
+            
+            // Limit dots
+            if (cursorDots.length > maxDots) {
+                const oldDot = cursorDots.shift();
+                if (oldDot) oldDot.remove();
+            }
+        });
+        
+        // Add subtle tilt effect to earth globe
+        const earthGlobe = document.querySelector('.earth-glow');
+        if (earthGlobe) {
+            document.addEventListener('mousemove', (e) => {
+                if (window.innerWidth < 768) return;
+                
+                const rect = earthGlobe.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const deltaX = (e.clientX - centerX) / 50;
+                const deltaY = (e.clientY - centerY) / 50;
+                
+                earthGlobe.style.transform = `perspective(1000px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg)`;
+            });
+        }
+        
+        // Preload critical resources
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            // Trigger initial animations
+            setTimeout(() => {
+                document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                    el.style.animationPlayState = 'running';
+                });
+            }, 100);
+        });
+        
+        // Performance: Throttle scroll events
+        let scrollTimeout;
+        let lastScrollY = 0;
+        
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) return;
+            
+            scrollTimeout = setTimeout(() => {
+                const currentScrollY = window.scrollY;
+                
+                // Hide/show navbar on scroll direction
+                if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollY = currentScrollY;
+                scrollTimeout = null;
+            }, 100);
+        });
+        
+        // Keyboard accessibility - Escape to close mobile menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuOpen) {
+                menuOpen = false;
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+            }
+        });
+        
+        // Console branding (fun touch)
+        console.log('%c🛰️ STARLINK', 'font-size: 32px; font-weight: bold; background: linear-gradient(90deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 20px;');
+        console.log('%cConnecting the world, one satellite at a time.', 'font-size: 14px; color: #60a5fa;');
+        
+    </script>
+</body>
+</html>
