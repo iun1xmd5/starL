@@ -1,4 +1,4 @@
-# 🛰️ Starlink Website Clone
+# 🛰️ StarL Website Clone
 
 A pixel-perfect recreation of the Starlink website built with HTML5 and Tailwind CSS.
 
