@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Business | High-Speed Internet for Business</title>
+    <meta name="description" content="Starlink Business delivers high-speed, low-latency internet for businesses everywhere.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'sl-black': '#000000',
+                        'sl-dark': '#0a0a0a',
+                        'sl-gray': '#171717',
+                        'sl-blue': '#3b82f6',
+                        'sl-blue-dark': '#1d4ed8',
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'slide-right': 'slideRight 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideRight: {
+                            '0%': { opacity: '0', transform: 'translateX(-30px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(59,130,246,0.3)' },
+                            '50%': { boxShadow: '0 0 60px rgba(59,130,246,0.8)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+        /* Glass nav */
+        .glass-nav {
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* Mega Menu */
+        .mega-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none;
+        }
+        .mega-menu-trigger:hover .mega-menu,
+        .mega-menu-trigger:focus-within .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        /* Nav link hover */
+        .nav-link {
+            position: relative;
+            transition: color 0.2s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Active nav */
+        .nav-active {
+            color: #fff;
+            font-weight: 600;
+        }
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1.5px;
+            background: #3b82f6;
+        }
+
+        /* Hero background */
+        .hero-business {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59,130,246,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(99,102,241,0.1) 0%, transparent 50%),
+                linear-gradient(180deg, #000 0%, #05061a 40%, #000 100%);
+            position: relative;
+        }
+
+        /* Starfield */
+        .stars {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 5% 10%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 25% 5%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 35% 40%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 45% 15%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(2px 2px at 55% 60%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 65% 30%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(1px 1px at 75% 50%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 85% 20%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 92% 70%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 10% 75%, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.5), transparent),
+                radial-gradient(2px 2px at 50% 90%, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 90% 95%, rgba(255,255,255,0.3), transparent);
+            animation: twinkle 6s ease-in-out infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #93c5fd 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Card hover */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(59,130,246,0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(59,130,246,0.1);
+        }
+
+        /* Plan card */
+        .plan-card {
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .plan-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59,130,246,0.5);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        }
+        .plan-card.featured {
+            border-color: rgba(59,130,246,0.6);
+            box-shadow: 0 0 40px rgba(59,130,246,0.15);
+        }
+
+        /* Button */
+        .btn-white {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .btn-white::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+            transition: left 0.5s;
+        }
+        .btn-white:hover::before { left: 100%; }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider line */
+        .gradient-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent);
+        }
+
+        /* Stat counter */
+        .stat-item {
+            position: relative;
+        }
+        .stat-item::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 20%; bottom: 20%;
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+        .stat-item:last-child::after { display: none; }
+
+        /* Badge */
+        .badge-new {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Testimonial */
+        .testimonial-card {
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(59,130,246,0.3);
+            transform: translateY(-4px);
+        }
+
+        /* Mobile menu slide */
+        #mobileMenu {
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        /* Comparison table */
+        .compare-row:hover td {
+            background: rgba(59,130,246,0.05);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 2px;
+            transition: width 1.5s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2L20 14L28 16L20 18L16 30L12 18L4 16L12 14L16 2Z" fill="white"/>
+                </svg>
+                <span class="text-lg font-bold tracking-widest uppercase">Starlink</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center space-x-1">
+
+                <!-- Residential -->
+                <div class="mega-menu-trigger relative">
+                    <a href="#" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white flex items-center gap-1">
+                        Residential
+                        <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                    </a>
+                    <!-- Dropdown -->
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 glass-nav rounded-xl p-4 shadow-2xl z-50">
+                        <div class="space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition group">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-home text-blue-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Home Internet</p>
+                                    <p class="text-xs text-gray-500">Fixed residential broadband</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition group">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-caravan text-purple-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Roam</p>
+                                    <p class="text-xs text-gray-500">Internet on the move</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition group">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-wifi text-green-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Check Availability</p>
+                                    <p class="text-xs text-gray-500">See service in your area</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business - Active Page -->
+                <div class="mega-menu-trigger relative">
+                    <a href="business.html" class="nav-active nav-link px-4 py-2 text-sm font-semibold text-white flex items-center gap-1">
+                        Business
+                        <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                    </a>
+                    <!-- Business Mega Dropdown -->
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 glass-nav rounded-xl p-4 shadow-2xl z-50">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-3 px-1">Business Solutions</p>
+                        <div class="space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition bg-blue-500/5 border border-blue-500/20">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-building text-blue-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-sm font-medium">Business Internet</p>
+                                        <span class="badge-new text-white">Active</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Priority business connectivity</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-truck text-orange-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Business Roam</p>
+                                    <p class="text-xs text-gray-500">Mobile business connectivity</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-network-wired text-red-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="text-sm font-medium">Enterprise</p>
+                                        <span class="badge-new text-white">New</span>
+                                    </div>
+                                    <p class="text-xs text-gray-500">Custom large-scale solutions</p>
+                                </div>
+                            </a>
+                            <div class="border-t border-white/5 mt-2 pt-2">
+                                <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                    <div class="w-8 h-8 bg-gray-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-headset text-gray-400 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium">Business Support</p>
+                                        <p class="text-xs text-gray-500">Priority customer service</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maritime -->
+                <div class="mega-menu-trigger relative">
+                    <a href="#" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white flex items-center gap-1">
+                        Maritime
+                        <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                    </a>
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 glass-nav rounded-xl p-4 shadow-2xl z-50">
+                        <div class="space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-cyan-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-ship text-cyan-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Ocean Coverage</p>
+                                    <p class="text-xs text-gray-500">Global maritime internet</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-anchor text-blue-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Marine Plans</p>
+                                    <p class="text-xs text-gray-500">Pricing & specifications</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aviation -->
+                <div class="mega-menu-trigger relative">
+                    <a href="#" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white flex items-center gap-1">
+                        Aviation
+                        <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                    </a>
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 glass-nav rounded-xl p-4 shadow-2xl z-50">
+                        <div class="space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-plane text-purple-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Commercial Aviation</p>
+                                    <p class="text-xs text-gray-500">In-flight Wi-Fi solutions</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-yellow-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-helicopter text-yellow-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Private Aviation</p>
+                                    <p class="text-xs text-gray-500">Private jet connectivity</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Government -->
+                <div class="mega-menu-trigger relative">
+                    <a href="#" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white flex items-center gap-1">
+                        Government
+                        <i class="fas fa-chevron-down text-[10px] opacity-60"></i>
+                    </a>
+                    <div class="mega-menu absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 glass-nav rounded-xl p-4 shadow-2xl z-50">
+                        <div class="space-y-1">
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-landmark text-indigo-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Public Sector</p>
+                                    <p class="text-xs text-gray-500">Government & defense</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition">
+                                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shield-alt text-red-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Emergency Services</p>
+                                    <p class="text-xs text-gray-500">First responder solutions</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specifications -->
+                <a href="#" class="nav-link px-4 py-2 text-sm font-medium text-gray-300 hover:text-white">
+                    Specifications
+                </a>
+            </div>
+
+            <!-- Right Side -->
+            <div class="flex items-center gap-3">
+                <button class="hidden md:flex items-center gap-1.5 text-sm text-gray-300 hover:text-white transition px-2 py-1">
+                    <i class="fas fa-globe text-xs"></i>
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down text-[9px] opacity-50"></i>
+                </button>
+
+                <a href="#" class="hidden md:block text-sm text-gray-300 hover:text-white transition font-medium px-2 py-1">
+                    Sign In
+                </a>
+
+                <a href="#plans" class="hidden sm:inline-flex items-center gap-2 px-5 py-2 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-100 transition btn-white">
+                    Order Now
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+
+                <!-- Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 top-16 z-40 bg-black/98 backdrop-blur-xl transform translate-x-full lg:hidden overflow-y-auto">
+        <div class="px-6 py-8 space-y-1">
+            <!-- Mobile nav groups -->
+            <div class="mobile-accordion border-b border-white/5">
+                <button class="mobile-acc-btn w-full flex items-center justify-between py-4 text-lg font-semibold">
+                    Residential
+                    <i class="fas fa-chevron-down text-sm text-gray-500 transition-transform"></i>
+                </button>
+                <div class="mobile-acc-content hidden pb-4 pl-4 space-y-3">
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-home text-blue-400 w-5"></i> Home Internet
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-caravan text-purple-400 w-5"></i> Roam
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-wifi text-green-400 w-5"></i> Check Availability
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-accordion border-b border-white/5">
+                <button class="mobile-acc-btn w-full flex items-center justify-between py-4 text-lg font-semibold text-blue-400">
+                    Business
+                    <i class="fas fa-chevron-down text-sm text-gray-500 transition-transform"></i>
+                </button>
+                <div class="mobile-acc-content hidden pb-4 pl-4 space-y-3">
+                    <a href="business.html" class="flex items-center gap-3 py-2 text-white font-medium transition">
+                        <i class="fas fa-building text-blue-400 w-5"></i> Business Internet
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-truck text-orange-400 w-5"></i> Business Roam
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-network-wired text-red-400 w-5"></i> Enterprise
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-accordion border-b border-white/5">
+                <button class="mobile-acc-btn w-full flex items-center justify-between py-4 text-lg font-semibold">
+                    Maritime
+                    <i class="fas fa-chevron-down text-sm text-gray-500 transition-transform"></i>
+                </button>
+                <div class="mobile-acc-content hidden pb-4 pl-4 space-y-3">
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-ship text-cyan-400 w-5"></i> Ocean Coverage
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-anchor text-blue-400 w-5"></i> Marine Plans
+                    </a>
+                </div>
+            </div>
+            <div class="mobile-accordion border-b border-white/5">
+                <button class="mobile-acc-btn w-full flex items-center justify-between py-4 text-lg font-semibold">
+                    Aviation
+                    <i class="fas fa-chevron-down text-sm text-gray-500 transition-transform"></i>
+                </button>
+                <div class="mobile-acc-content hidden pb-4 pl-4 space-y-3">
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-plane text-purple-400 w-5"></i> Commercial Aviation
+                    </a>
+                    <a href="#" class="flex items-center gap-3 py-2 text-gray-400 hover:text-white transition">
+                        <i class="fas fa-helicopter text-yellow-400 w-5"></i> Private Aviation
+                    </a>
+                </div>
+            </div>
+            <a href="#" class="block py-4 text-lg font-semibold border-b border-white/5">Government</a>
+            <a href="#" class="block py-4 text-lg font-semibold border-b border-white/5">Specifications</a>
+            <a href="#" class="block py-4 text-lg font-semibold border-b border-white/5">Sign In</a>
+
+            <div class="pt-6">
+                <a href="#plans" class="w-full flex items-center justify-center gap-2 px-6 py-4 bg-white text-black font-bold rounded-full text-lg hover:bg-gray-100 transition">
+                    Order Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<section class="hero-business relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <div class="stars"></div>
+
+    <!-- Animated grid lines -->
+    <div class="absolute inset-0 opacity-5" style="
+        background-image: linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px);
+        background-size: 60px 60px;
+    "></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
+        <div class="grid lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-64px)] py-20">
+
+            <!-- Left: Text -->
+            <div class="animate-fade-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-6">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    Business Solutions
+                </div>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-black leading-tight mb-6">
+                    High-Speed Internet
+                    <span class="block gradient-text">for Business</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-400 mb-8 leading-relaxed max-w-xl">
+                    Keep your business connected anywhere in the world. 
+                    Purpose-built for reliability, speed, and scale — 
+                    with priority access and dedicated support.
+                </p>
+
+                <!-- Key Highlights -->
+                <div class="flex flex-wrap gap-4 mb-10">
+                    <div class="flex items-center gap-2 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-blue-400"></i>
+                        Priority Data Access
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-blue-400"></i>
+                        24/7 Dedicated Support
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-blue-400"></i>
+                        No Data Caps
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-blue-400"></i>
+                        Global Coverage
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#plans" class="btn-white inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition text-base">
+                        See Plans & Pricing
+                        <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                    <a href="contact.html" class="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/40 transition text-base">
+                        Contact Sales
+                        <i class="fas fa-headset text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Hardware Visual -->
+            <div class="relative flex items-center justify-center animate-fade-in">
+                <!-- Glow effect -->
+                <div class="absolute inset-0 rounded-full" style="
+                    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+                    filter: blur(40px);
+                "></div>
+
+                <!-- Dish visual -->
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96 animate-float">
+                    <!-- Outer ring -->
+                    <div class="absolute inset-0 rounded-full border border-blue-500/20 animate-spin" style="animation-duration: 30s;"></div>
+                    <div class="absolute inset-4 rounded-full border border-blue-400/15 animate-spin" style="animation-duration: 20s; animation-direction: reverse;"></div>
+                    <div class="absolute inset-8 rounded-full border border-blue-300/10 animate-spin" style="animation-duration: 15s;"></div>
+
+                    <!-- Center dish icon -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-40 h-40 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full border border-gray-700 flex items-center justify-center animate-pulse-glow shadow-2xl">
+                            <i class="fas fa-satellite-dish text-6xl text-blue-400"></i>
+                        </div>
+                    </div>
+
+                    <!-- Satellite dots -->
+                    <div class="absolute top-2 left-1/2 w-3 h-3 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50 -translate-x-1/2 animate-pulse"></div>
+                    <div class="absolute bottom-6 right-8 w-2 h-2 bg-purple-400 rounded-full shadow-lg shadow-purple-400/50 animate-pulse" style="animation-delay: 1s;"></div>
+                    <div class="absolute top-1/2 right-0 w-2 h-2 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 -translate-y-1/2 animate-pulse" style="animation-delay: 0.5s;"></div>
+
+                    <!-- Data lines -->
+                    <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 400 400">
+                        <line x1="200" y1="200" x2="200" y2="20" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="200" y1="200" x2="370" y2="280" stroke="#8b5cf6" stroke-width="1" stroke-dasharray="4,4"/>
+                        <line x1="200" y1="200" x2="30" y2="280" stroke="#06b6d4" stroke-width="1" stroke-dasharray="4,4"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom gradient -->
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
+</section>
+
+<!-- ============================================================
+     STATS BAR
+============================================================ -->
+<section class="py-12 bg-black border-y border-white/5">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4">
+            <div class="stat-item text-center px-6 py-4 reveal">
+                <div class="text-4xl md:text-5xl font-black text-white mb-1">220+</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Mbps Download</div>
+                <div class="progress-bar mt-3 mx-auto max-w-[80px]">
+                    <div class="progress-fill" style="width: 88%"></div>
+                </div>
+            </div>
+            <div class="stat-item text-center px-6 py-4 reveal">
+                <div class="text-4xl md:text-5xl font-black text-white mb-1">20ms</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Avg Latency</div>
+                <div class="progress-bar mt-3 mx-auto max-w-[80px]">
+                    <div class="progress-fill" style="width: 95%"></div>
+                </div>
+            </div>
+            <div class="stat-item text-center px-6 py-4 reveal">
+                <div class="text-4xl md:text-5xl font-black text-white mb-1">100+</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">Countries Served</div>
+                <div class="progress-bar mt-3 mx-auto max-w-[80px]">
+                    <div class="progress-fill" style="width: 70%"></div>
+                </div>
+            </div>
+            <div class="stat-item text-center px-6 py-4 reveal">
+                <div class="text-4xl md:text-5xl font-black text-white mb-1">99.9%</div>
+                <div class="text-sm text-gray-500 uppercase tracking-wider">SLA Uptime</div>
+                <div class="progress-bar mt-3 mx-auto max-w-[80px]">
+                    <div class="progress-fill" style="width: 99%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FEATURES SECTION
+============================================================ -->
+<section class="py-24 md:py-32 bg-gradient-to-b from-black to-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 reveal">
+            <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Why Starlink Business</p>
+            <h2 class="text-4xl md:text-6xl font-black mb-4">Built for Business</h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                Everything your business needs to stay connected, productive, and competitive.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Feature 1 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal">
+                <div class="w-14 h-14 bg-blue-500/15 rounded-xl flex items-center justify-center mb-5 border border-blue-500/20">
+                    <i class="fas fa-bolt text-2xl text-blue-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Priority Data Access</h3>
+                <p class="text-gray-400 leading-relaxed">Business accounts receive network priority over residential users during peak congestion, ensuring reliable speeds when you need them most.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.1s;">
+                <div class="w-14 h-14 bg-purple-500/15 rounded-xl flex items-center justify-center mb-5 border border-purple-500/20">
+                    <i class="fas fa-headset text-2xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">24/7 Dedicated Support</h3>
+                <p class="text-gray-400 leading-relaxed">Round-the-clock access to our specialized business support team. Get priority ticket handling and dedicated account management.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="w-14 h-14 bg-green-500/15 rounded-xl flex items-center justify-center mb-5 border border-green-500/20">
+                    <i class="fas fa-globe text-2xl text-green-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Global Coverage</h3>
+                <p class="text-gray-400 leading-relaxed">Connect from virtually anywhere on Earth. Perfect for remote offices, field operations, and international deployments.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal">
+                <div class="w-14 h-14 bg-orange-500/15 rounded-xl flex items-center justify-center mb-5 border border-orange-500/20">
+                    <i class="fas fa-shield-alt text-2xl text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
+                <p class="text-gray-400 leading-relaxed">Built-in security protocols, optional VPN support, and dedicated IP addresses available for sensitive business operations.</p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.1s;">
+                <div class="w-14 h-14 bg-cyan-500/15 rounded-xl flex items-center justify-center mb-5 border border-cyan-500/20">
+                    <i class="fas fa-chart-line text-2xl text-cyan-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Usage Analytics</h3>
+                <p class="text-gray-400 leading-relaxed">Detailed dashboards showing bandwidth usage, performance metrics, and network health reports for your business account.</p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="w-14 h-14 bg-pink-500/15 rounded-xl flex items-center justify-center mb-5 border border-pink-500/20">
+                    <i class="fas fa-expand-arrows-alt text-2xl text-pink-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Scalable Solutions</h3>
+                <p class="text-gray-400 leading-relaxed">Easily scale from a single location to hundreds of sites. Centralized management lets you deploy and manage terminals globally.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     PLANS SECTION
+============================================================ -->
+<section id="plans" class="py-24 md:py-32 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 reveal">
+            <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Pricing</p>
+            <h2 class="text-4xl md:text-6xl font-black mb-4">Business Plans</h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                Transparent pricing. No hidden fees. Cancel anytime.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+
+            <!-- Plan: Basic Business -->
+            <div class="plan-card bg-gradient-to-b from-gray-900 to-black rounded-3xl p-8 reveal">
+                <div class="mb-6">
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-2">Basic</p>
+                    <h3 class="text-2xl font-bold">Business</h3>
+                </div>
+                <div class="flex items-end gap-1 mb-2">
+                    <span class="text-5xl font-black">$250</span>
+                    <span class="text-gray-400 mb-1">/mo</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-8">+ $599 hardware (one-time)</p>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">40–220 Mbps download</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">8–25 Mbps upload</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">Priority data access</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">1 terminal included</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">Business support</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-times text-gray-700 w-4"></i><span class="text-gray-600">SLA guarantee</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-times text-gray-700 w-4"></i><span class="text-gray-600">Dedicated IP</span></li>
+                </ul>
+                <a href="#" class="block w-full py-3.5 border border-white/20 text-white font-semibold rounded-full text-center hover:bg-white/5 hover:border-white/40 transition text-sm">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Plan: Business Pro (Featured) -->
+            <div class="plan-card featured bg-gradient-to-b from-blue-950/50 to-black rounded-3xl p-8 reveal relative" style="transition-delay: 0.1s;">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span class="badge-new text-white px-5 py-1.5 text-xs">Most Popular</span>
+                </div>
+                <div class="mb-6">
+                    <p class="text-sm text-blue-400 uppercase tracking-widest mb-2">Professional</p>
+                    <h3 class="text-2xl font-bold">Business Pro</h3>
+                </div>
+                <div class="flex items-end gap-1 mb-2">
+                    <span class="text-5xl font-black">$500</span>
+                    <span class="text-gray-400 mb-1">/mo</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-8">+ $2,500 hardware (one-time)</p>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">100–350 Mbps download</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">20–40 Mbps upload</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">Priority data access</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">Up to 5 terminals</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">24/7 priority support</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">99.9% SLA guarantee</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400 w-4"></i><span class="text-gray-300">Dedicated IP address</span></li>
+                </ul>
+                <a href="#" class="block w-full py-3.5 bg-white text-black font-bold rounded-full text-center hover:bg-gray-100 transition btn-white text-sm">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Plan: Enterprise -->
+            <div class="plan-card bg-gradient-to-b from-gray-900 to-black rounded-3xl p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="mb-6">
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-2">Custom</p>
+                    <h3 class="text-2xl font-bold">Enterprise</h3>
+                </div>
+                <div class="flex items-end gap-1 mb-2">
+                    <span class="text-4xl font-black">Custom</span>
+                </div>
+                <p class="text-xs text-gray-600 mb-8">Contact sales for pricing</p>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Unlimited terminals</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Highest priority access</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Custom SLA terms</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Dedicated account manager</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">API access & integrations</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Fully managed deployment</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-check text-purple-400 w-4"></i><span class="text-gray-300">Custom security configs</span></li>
+                </ul>
+                <a href="contact.html" class="block w-full py-3.5 border border-purple-500/40 text-purple-300 font-semibold rounded-full text-center hover:bg-purple-500/10 hover:border-purple-500/60 transition text-sm">
+                    Contact Sales
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     USE CASES
+============================================================ -->
+<section class="py-24 md:py-32 bg-gradient-to-b from-black to-gray-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 reveal">
+            <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Industries</p>
+            <h2 class="text-4xl md:text-6xl font-black mb-4">Who Uses Starlink Business?</h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto">Trusted by industries that demand reliability</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-tractor text-3xl text-green-400 mb-3"></i>
+                <p class="text-sm font-medium">Agriculture</p>
+            </div>
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-hard-hat text-3xl text-yellow-400 mb-3"></i>
+                <p class="text-sm font-medium">Construction</p>
+            </div>
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-hospital text-3xl text-red-400 mb-3"></i>
+                <p class="text-sm font-medium">Healthcare</p>
+            </div>
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-oil-can text-3xl text-orange-400 mb-3"></i>
+                <p class="text-sm font-medium">Energy</p>
+            </div>
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-graduation-cap text-3xl text-blue-400 mb-3"></i>
+                <p class="text-sm font-medium">Education</p>
+            </div>
+            <div class="feature-card bg-gradient-to-b from-gray-900 to-black rounded-2xl p-6 text-center reveal">
+                <i class="fas fa-store text-3xl text-purple-400 mb-3"></i>
+                <p class="text-sm font-medium">Retail</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="py-24 md:py-32 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-black mb-4">Trusted by Businesses</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="testimonial-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal">
+                <div class="flex mb-4">
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">"Starlink Business transformed our remote farm operations. We can now run precision agriculture software and video calls from anywhere on our 2,000-acre property."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-green-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">James Robertson</p>
+                        <p class="text-xs text-gray-500">Ranch Owner, Montana</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.1s;">
+                <div class="flex mb-4">
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">"We deployed 12 Starlink terminals across our construction sites. The reliable connection keeps our project management software running smoothly — even in the middle of nowhere."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-blue-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">Maria Santos</p>
+                        <p class="text-xs text-gray-500">CTO, BuildForce Inc.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 reveal" style="transition-delay: 0.2s;">
+                <div class="flex mb-4">
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i><i class="fas fa-star text-yellow-400"></i>
+                    <i class="fas fa-star text-yellow-400"></i>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-6">"The priority support is exceptional. When we had connectivity issues during a critical event, a Starlink specialist was on call within minutes. Unmatched service."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-purple-400"></i>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-sm">Dr. Aiko Tanaka</p>
+                        <p class="text-xs text-gray-500">Director, MedConnect Asia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+============================================================ -->
+<section class="py-24 md:py-32 relative overflow-hidden bg-gradient-to-b from-gray-950 to-black">
+    <div class="stars opacity-30"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+        <div class="reveal">
+            <h2 class="text-4xl md:text-6xl font-black mb-6">
+                Ready to Power<br>
+                <span class="gradient-text">Your Business?</span>
+            </h2>
+            <p class="text-lg text-gray-400 mb-10">
+                Join thousands of businesses worldwide already running on Starlink.
+                Get connected today — hardware ships in days.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#plans" class="btn-white inline-flex items-center justify-center gap-2 px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-100 transition text-base">
+                    View Plans <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+                <a href="contact.html" class="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 transition text-base">
+                    Talk to Sales <i class="fas fa-headset text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="bg-black border-t border-white/5 pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
+            <div class="col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L20 14L28 16L20 18L16 30L12 18L4 16L12 14L16 2Z" fill="white"/>
+                    </svg>
+                    <span class="text-lg font-bold tracking-widest uppercase">Starlink</span>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-5 max-w-xs">
+                    Connecting the world with high-speed, low-latency internet from space.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center text-gray-500 hover:text-white hover:border-white/30 transition">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center text-gray-500 hover:text-white hover:border-white/30 transition">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 border border-white/10 rounded-lg flex items-center justify-center text-gray-500 hover:text-white hover:border-white/30 transition">
+                        <i class="fab fa-youtube text-sm"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Services</h5>
+                <ul class="space-y-2.5 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Residential</a></li>
+                    <li><a href="#" class="hover:text-white transition">Roam</a></li>
+                    <li><a href="business.html" class="text-blue-400 font-medium">Business</a></li>
+                    <li><a href="#" class="hover:text-white transition">Maritime</a></li>
+                    <li><a href="#" class="hover:text-white transition">Aviation</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Solutions</h5>
+                <ul class="space-y-2.5 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Enterprise</a></li>
+                    <li><a href="#" class="hover:text-white transition">Government</a></li>
+                    <li><a href="#" class="hover:text-white transition">Education</a></li>
+                    <li><a href="#" class="hover:text-white transition">Healthcare</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Resources</h5>
+                <ul class="space-y-2.5 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">Specifications</a></li>
+                    <li><a href="#" class="hover:text-white transition">Coverage Map</a></li>
+                    <li><a href="#" class="hover:text-white transition">Setup Guide</a></li>
+                    <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Company</h5>
+                <ul class="space-y-2.5 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition">About</a></li>
+                    <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                    <li><a href="#" class="hover:text-white transition">SpaceX</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="gradient-divider mb-8"></div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-600">© 2026 Space Exploration Technologies Corp. All rights reserved.</p>
+            <div class="flex gap-6 text-xs text-gray-600">
+                <a href="#" class="hover:text-gray-300 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-gray-300 transition">Terms of Service</a>
+                <a href="#" class="hover:text-gray-300 transition">Cookie Policy</a>
+                <a href="#" class="hover:text-gray-300 transition">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+    // --- Navbar scroll ---
+    const navbar = document.getElementById('navbar');
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        navbar.style.transform = scrollY > lastScrollY && scrollY > 200
+            ? 'translateY(-100%)' : 'translateY(0)';
+        lastScrollY = scrollY;
+    }, { passive: true });
+
+    // --- Mobile menu ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu   = document.getElementById('mobileMenu');
+    let menuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('translate-x-full', !menuOpen);
+        mobileMenu.classList.toggle('translate-x-0', menuOpen);
+        mobileMenuBtn.innerHTML = menuOpen
+            ? '<i class="fas fa-times text-lg"></i>'
+            : '<i class="fas fa-bars text-lg"></i>';
+        document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    // --- Mobile accordion ---
+    document.querySelectorAll('.mobile-acc-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            const icon    = btn.querySelector('i');
+            const isOpen  = !content.classList.contains('hidden');
+
+            // Close all
+            document.querySelectorAll('.mobile-acc-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.mobile-acc-btn i').forEach(i => i.style.transform = '');
+
+            // Toggle this
+            if (!isOpen) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // Escape closes menu
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && menuOpen) mobileMenuBtn.click();
+    });
+
+    // --- Intersection Observer reveal ---
+    const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Animate progress bars
+                entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+                    bar.style.width = bar.style.width;
+                });
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // --- Progress bar animation on load ---
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const target = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => { bar.style.width = target; }, 300);
+            });
+        }, 500);
+    });
+
+    // --- Smooth scroll ---
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (menuOpen) mobileMenuBtn.click();
+            }
+        });
+    });
+
+    // --- Card mouse glow ---
+    document.querySelectorAll('.feature-card, .plan-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = e.clientX - r.left;
+            const y = e.clientY - r.top;
+            card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(59,130,246,0.06) 0%, rgba(17,17,17,1) 60%, #000 100%)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.background = ''; });
+    });
+</script>
+</body>
+</html>
